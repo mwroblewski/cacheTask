@@ -2,7 +2,7 @@
 
 namespace CacheTranslator
 {
-    public interface ICache
+    public interface IDisk
     {
         List<BlockRange> GetFileMapping(FileId fileIdentification);
         void CacheBlocks(List<BlockRange> blocks);

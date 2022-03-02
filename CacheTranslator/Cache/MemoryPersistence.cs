@@ -30,5 +30,10 @@ namespace CacheTranslator
         {
             _inMemory[fileIdentification] = newBlocks;
         }
+
+        public List<BlockRange> Get(FileId fileIdentification)
+        {
+            return _inMemory[fileIdentification];
+        }
     }
 }

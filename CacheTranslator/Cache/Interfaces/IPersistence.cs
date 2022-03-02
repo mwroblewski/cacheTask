@@ -11,5 +11,7 @@ namespace CacheTranslator
         bool Contains(FileId fileIdentification);
 
         void Update(FileId fileIdentification, List<BlockRange> newBlocks);
+
+        List<BlockRange> Get(FileId fileIdentification);
     }
 }

@@ -2,12 +2,12 @@
 {
     public class CacheTranslator : ICacheTranslator
     {
-        private readonly ICache _cache;
+        private readonly IDisk _disk;
         private readonly IPersistence _persistence;
 
-        public CacheTranslator(ICache cache = null, IPersistence persistence = null)
+        public CacheTranslator(IDisk cache = null, IPersistence persistence = null)
         {
-            _cache = cache ?? new FirmwareCache();
+            _disk = cache ?? new FirmwareCache();
             _persistence = persistence ?? new MemoryPersistence();
         }
 
@@ -17,8 +17,8 @@
             {
                 return;
             }
-            var blocks = _cache.GetFileMapping(fileIdentification);
-            _cache.CacheBlocks(blocks);
+            var blocks = _disk.GetFileMapping(fileIdentification);
+            _disk.CacheBlocks(blocks);
             _persistence.Add(fileIdentification, blocks);
         }
 
@@ -29,7 +29,9 @@
                 return;
             }
             Synchronize(fileIdentification);
-            //NOTE this still can desynchronize between these 2 calls
+            //NOTE this still can desynchronize between these calls
+            var blocks = _persistence.Get(fileIdentification);
+            _disk.EvictBlocks(blocks);
             _persistence.Remove(fileIdentification);
         }
 
@@ -39,7 +41,7 @@
             {
                 return;
             }
-            var blocksFromCache = _cache.GetFileMapping(fileIdentification);
+            var blocksFromCache = _disk.GetFileMapping(fileIdentification);
             _persistence.Update(fileIdentification, blocksFromCache);
         }
     }

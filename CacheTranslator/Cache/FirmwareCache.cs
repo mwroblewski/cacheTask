@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace CacheTranslator
 {
-    internal class FirmwareCache : ICache
+    internal class FirmwareCache : IDisk
     {
         [MethodImpl(MethodImplOptions.InternalCall)]
         public extern void CacheBlocks(List<BlockRange> blocks);
