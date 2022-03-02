@@ -26,9 +26,9 @@ namespace CacheTranslator
             return _inMemory.ContainsKey(fileIdentification);
         }
 
-        public List<BlockRange> Get(FileId fileIdentification)
+        public void Update(FileId fileIdentification, List<BlockRange> newBlocks)
         {
-            return _inMemory[fileIdentification];
+            _inMemory[fileIdentification] = newBlocks;
         }
     }
 }

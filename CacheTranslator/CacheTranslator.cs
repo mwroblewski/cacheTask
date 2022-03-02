@@ -24,15 +24,23 @@
 
         public void Remove(FileId fileIdentification)
         {
+            if (_persistence.Contains(fileIdentification) == false)
+            {
+                return;
+            }
             Synchronize(fileIdentification);
+            //NOTE this still can desynchronize between these 2 calls
             _persistence.Remove(fileIdentification);
-
         }
 
         public void Synchronize(FileId fileIdentification)
         {
+            if (_persistence.Contains(fileIdentification) == false)
+            {
+                return;
+            }
             var blocksFromCache = _cache.GetFileMapping(fileIdentification);
-            //var blocksFromPersistence
+            _persistence.Update(fileIdentification, blocksFromCache);
         }
     }
 }
