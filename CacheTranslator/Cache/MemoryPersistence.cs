@@ -20,5 +20,10 @@ namespace CacheTranslator
         {
             _inMemory.Remove(fileIdentifiaction);
         }
+
+        public bool Contains(FileId fileIdentification)
+        {
+            return _inMemory.ContainsKey(fileIdentification);
+        }
     }
 }
