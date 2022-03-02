@@ -31,7 +31,8 @@
 
         public void Synchronize(FileId fileIdentification)
         {
-            throw new System.NotImplementedException();
+            var blocksFromCache = _cache.GetFileMapping(fileIdentification);
+            //var blocksFromPersistence
         }
     }
 }
