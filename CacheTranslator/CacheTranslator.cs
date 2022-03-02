@@ -5,10 +5,10 @@
         private readonly ICache _cache;
         private readonly IPersistence _persistence;
 
-        public CacheTranslator(ICache cache, IPersistence persistence)
+        public CacheTranslator(ICache cache = null, IPersistence persistence = null)
         {
-            _cache = cache;
-            _persistence = persistence;
+            _cache = cache ?? new FirmwareCache();
+            _persistence = persistence ?? new MemoryPersistence();
         }
 
         public void Add(FileId fileIdentification)

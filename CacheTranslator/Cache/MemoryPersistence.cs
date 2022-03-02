@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CacheTranslator
 {
-    public class MemoryPersistence : IPersistence
+    internal class MemoryPersistence : IPersistence
     {
         readonly Dictionary<FileId, List<BlockRange>> _inMemory = new();
 
