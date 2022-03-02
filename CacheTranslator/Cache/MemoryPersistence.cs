@@ -25,5 +25,10 @@ namespace CacheTranslator
         {
             return _inMemory.ContainsKey(fileIdentification);
         }
+
+        public List<BlockRange> Get(FileId fileIdentification)
+        {
+            return _inMemory[fileIdentification];
+        }
     }
 }

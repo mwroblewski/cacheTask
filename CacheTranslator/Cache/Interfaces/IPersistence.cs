@@ -9,5 +9,7 @@ namespace CacheTranslator
         void Remove(FileId fileIdentifiaction);
 
         bool Contains(FileId fileIdentification);
+
+        List<BlockRange> Get(FileId fileIdentification);
     }
 }
