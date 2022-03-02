@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 
 namespace CacheTranslator
 {
-    //NOTE this class is not needed but is left on purpose to present how should it look to communicate with the firmware
     internal class FirmwareCache : IDisk
     {
         [MethodImpl(MethodImplOptions.InternalCall)]

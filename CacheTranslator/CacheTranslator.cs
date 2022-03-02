@@ -42,6 +42,9 @@
                 return;
             }
             var blocksFromDisk = _disk.GetFileMapping(fileIdentification);
+            //NOTE this could be done with comparing which blocks got removed and then updating them in cache respectively
+            _disk.EvictBlocks(_persistence.Get(fileIdentification));
+            _disk.CacheBlocks(blocksFromDisk);
             _persistence.Update(fileIdentification, blocksFromDisk);
         }
     }
