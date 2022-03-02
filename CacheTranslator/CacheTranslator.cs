@@ -1,13 +1,13 @@
 ﻿namespace CacheTranslator
 {
-    public class CacheTranslator : ICacheTranslator
+    public class CacheTranslator
     {
         private readonly IDisk _disk;
         private readonly IPersistence _persistence;
 
-        public CacheTranslator(IDisk cache = null, IPersistence persistence = null)
+        public CacheTranslator(IDisk disk = null, IPersistence persistence = null)
         {
-            _disk = cache ?? new FirmwareCache();
+            _disk = disk ?? new FirmwareCache();
             _persistence = persistence ?? new MemoryPersistence();
         }
 
@@ -41,8 +41,8 @@
             {
                 return;
             }
-            var blocksFromCache = _disk.GetFileMapping(fileIdentification);
-            _persistence.Update(fileIdentification, blocksFromCache);
+            var blocksFromDisk = _disk.GetFileMapping(fileIdentification);
+            _persistence.Update(fileIdentification, blocksFromDisk);
         }
     }
 }
